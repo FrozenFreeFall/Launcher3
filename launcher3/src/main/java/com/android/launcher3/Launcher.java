@@ -132,7 +132,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Launcher extends Activity
         implements View.OnClickListener, OnLongClickListener, LauncherModel.Callbacks,
                    View.OnTouchListener, PageSwitchListener, LauncherProviderChangeListener {
-    static final String TAG = "Launcher";
+    static final String TAG = "hailongqiu";
     static final boolean LOGD = false;
 
     static final boolean PROFILE_STARTUP = false;
@@ -3161,7 +3161,10 @@ public class Launcher extends Activity
         getDragLayer().sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
     }
 
+//    private static final String TAG = "hailongqiu";
+
     public boolean onLongClick(View v) {
+        Log.d(TAG, "onLongClick=====1111");
         if (!isDraggingEnabled()) return false;
         if (isWorkspaceLocked()) return false;
         if (mState != State.WORKSPACE) return false;
@@ -3215,6 +3218,7 @@ public class Launcher extends Activity
                                 longClickCellInfo.cellY));
                 if (!(itemUnderLongClick instanceof Folder || isAllAppsButton)) {
                     // User long pressed on an item
+                    // 长按ITEM 拖动.
                     mWorkspace.startDrag(longClickCellInfo);
                 }
             }

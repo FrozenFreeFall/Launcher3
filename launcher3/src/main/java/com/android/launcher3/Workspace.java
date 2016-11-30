@@ -2162,6 +2162,7 @@ public class Workspace extends PagedView
      * its value will be changed
      */
     public Bitmap createDragBitmap(View v, AtomicInteger expectedPadding) {
+        // 将 view 绘制在 bitmap上面.
         Bitmap b;
 
         int padding = expectedPadding.get();
@@ -2254,6 +2255,7 @@ public class Workspace extends PagedView
 
     public void beginDragShared(View child, Point relativeTouchPos, DragSource source,
             boolean accessible) {
+        // 生成随手动的bitmap.
         child.clearFocus();
         child.setPressed(false);
 
@@ -2322,7 +2324,7 @@ public class Workspace extends PagedView
         if (child.getParent() instanceof ShortcutAndWidgetContainer) {
             mDragSourceInternal = (ShortcutAndWidgetContainer) child.getParent();
         }
-
+        //  生成随手动的Bitmap，把工作交接给DragController.startDrag。
         DragView dv = mDragController.startDrag(b, dragLayerX, dragLayerY, source, child.getTag(),
                 DragController.DRAG_ACTION_MOVE, dragVisualizeOffset, dragRect, scale, accessible);
         dv.setIntrinsicIconScaleFactor(source.getIntrinsicIconScaleFactor());
