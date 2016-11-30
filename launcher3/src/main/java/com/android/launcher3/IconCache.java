@@ -76,10 +76,13 @@ public class IconCache {
 
     @Thunk static final Object ICON_UPDATE_TOKEN = new Object();
 
+    /**
+     * 三个成员是图标，标题和应用描述。
+     */
     @Thunk static class CacheEntry {
-        public Bitmap icon;
-        public CharSequence title = "";
-        public CharSequence contentDescription = "";
+        public Bitmap icon; // 图标
+        public CharSequence title = ""; // 标题
+        public CharSequence contentDescription = ""; // 应用描述
         public boolean isLowResIcon;
     }
 
@@ -116,7 +119,7 @@ public class IconCache {
         mPackageManager = context.getPackageManager();
         mUserManager = UserManagerCompat.getInstance(mContext);
         mLauncherApps = LauncherAppsCompat.getInstance(mContext);
-        mIconDpi = inv.fillResIconDpi;
+        mIconDpi = inv.fillResIconDpi; // 显示控制图标的大小
         mIconDb = new IconDB(context);
 
         mWorkerHandler = new Handler(LauncherModel.getWorkerLooper());

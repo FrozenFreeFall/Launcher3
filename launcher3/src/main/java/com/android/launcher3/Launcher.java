@@ -404,6 +404,7 @@ public class Launcher extends Activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // 性能测试.
         if (DEBUG_STRICT_MODE) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectDiskReads()
@@ -438,9 +439,9 @@ public class Launcher extends Activity
                 Context.MODE_PRIVATE);
         mIsSafeModeEnabled = getPackageManager().isSafeMode();
         mModel = app.setLauncher(this);
-        mIconCache = app.getIconCache();
+        mIconCache = app.getIconCache(); // 缓存.
 
-        mDragController = new DragController(this);
+        mDragController = new DragController(this); // 拖动控制.
         mInflater = getLayoutInflater();
         mStateTransitionAnimation = new LauncherStateTransitionAnimation(this);
 
@@ -456,6 +457,7 @@ public class Launcher extends Activity
         // LauncherModel load.
         mPaused = false;
 
+        // TraceView http://www.oschina.net/news/56500/traceview-android
         if (PROFILE_STARTUP) {
             android.os.Debug.startMethodTracing(
                     Environment.getExternalStorageDirectory() + "/launcher");
@@ -471,6 +473,7 @@ public class Launcher extends Activity
         mSavedState = savedInstanceState;
         restoreState(mSavedState);
 
+        // TraceView  stop.
         if (PROFILE_STARTUP) {
             android.os.Debug.stopMethodTracing();
         }
@@ -1388,9 +1391,9 @@ public class Launcher extends Activity
         if (mHotseat != null) {
             mHotseat.setOnLongClickListener(this);
         }
-
+        // 长按桌面 弹出的工具条. (壁纸，小部件，设置）
         mOverviewPanel = (ViewGroup) findViewById(R.id.overview_panel);
-        mWidgetsButton = findViewById(R.id.widget_button);
+        mWidgetsButton = findViewById(R.id.widget_button); // 部件
         mWidgetsButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -1401,7 +1404,7 @@ public class Launcher extends Activity
         });
         mWidgetsButton.setOnTouchListener(getHapticFeedbackTouchListener());
 
-        View wallpaperButton = findViewById(R.id.wallpaper_button);
+        View wallpaperButton = findViewById(R.id.wallpaper_button); // 壁纸
         wallpaperButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -1412,7 +1415,7 @@ public class Launcher extends Activity
         });
         wallpaperButton.setOnTouchListener(getHapticFeedbackTouchListener());
 
-        View settingsButton = findViewById(R.id.settings_button);
+        View settingsButton = findViewById(R.id.settings_button); // 设置
         if (hasSettings()) {
             settingsButton.setOnClickListener(new OnClickListener() {
                 @Override
