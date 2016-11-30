@@ -58,7 +58,6 @@ import java.util.ArrayList;
  * sequential list of "pages"
  */
 public abstract class PagedView extends ViewGroup implements ViewGroup.OnHierarchyChangeListener {
-    private static final String TAG = "PagedView";
     private static final boolean DEBUG = false;
     protected static final int INVALID_PAGE = -1;
 
@@ -1219,6 +1218,7 @@ public abstract class PagedView extends ViewGroup implements ViewGroup.OnHierarc
 
     @Override
     public boolean dispatchUnhandledMove(View focused, int direction) {
+        Log.d(TAG, "dispatchUnhandledMove");
         // XXX-RTL: This will be fixed in a future CL
         if (direction == View.FOCUS_LEFT) {
             if (getCurrentPage() > 0) {
@@ -1236,6 +1236,7 @@ public abstract class PagedView extends ViewGroup implements ViewGroup.OnHierarc
 
     @Override
     public void addFocusables(ArrayList<View> views, int direction, int focusableMode) {
+        Log.d(TAG, "addFocusables11111111111");
         // XXX-RTL: This will be fixed in a future CL
         if (mCurrentPage >= 0 && mCurrentPage < getPageCount()) {
             getPageAt(mCurrentPage).addFocusables(views, direction, focusableMode);
@@ -1320,6 +1321,12 @@ public abstract class PagedView extends ViewGroup implements ViewGroup.OnHierarc
         sTmpRect.set(mViewport.left - mViewport.width() / 2, mViewport.top,
                 mViewport.right + mViewport.width() / 2, mViewport.bottom);
         return sTmpRect.contains(x, y);
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+
+        return super.dispatchKeyEvent(event);
     }
 
     @Override
@@ -2113,7 +2120,10 @@ public abstract class PagedView extends ViewGroup implements ViewGroup.OnHierarc
         if (getNextPage() > 0) snapToPage(getNextPage() - 1);
     }
 
+    private static final String TAG = "hailongqiu";
+
     public void scrollRight() {
+        Log.d(TAG, "scrollRight11111");
         if (getNextPage() < getChildCount() -1) snapToPage(getNextPage() + 1);
     }
 

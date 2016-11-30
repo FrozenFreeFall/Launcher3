@@ -58,6 +58,7 @@ import java.util.Set;
 import java.util.Stack;
 
 /**
+ *  桌面图标缓存.
  * Cache of application icons.  Icons can be made from any thread.
  */
 public class IconCache {

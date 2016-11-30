@@ -3177,6 +3177,7 @@ public class Launcher extends Activity
         if (v instanceof Workspace) {
             if (!mWorkspace.isInOverviewMode()) {
                 if (!mWorkspace.isTouchActive()) {
+                    Log.d(TAG, "isTouchActive====111");
                     showOverviewMode(true);
                     mWorkspace.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS,
                             HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
@@ -3203,12 +3204,17 @@ public class Launcher extends Activity
         final boolean inHotseat = isHotseatLayout(v);
         if (!mDragController.isDragging()) {
             if (itemUnderLongClick == null) {
+                Log.d(TAG, "itemUnderLongClick====22222");
                 // User long pressed on empty space
                 mWorkspace.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS,
                         HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
                 if (mWorkspace.isInOverviewMode()) {
+                    //  长按，移动 workspace 的多个桌面窗口.
+                    Log.d(TAG, "itemUnderLongClick====2222aaaaaaaaaa");
                     mWorkspace.startReordering(v);
                 } else {
+                    //  长按，如果为 Workspace ，则显示多个桌面出来. (缩小)
+                    Log.d(TAG, "itemUnderLongClick====222bbbbbbbbb");
                     showOverviewMode(true);
                 }
             } else {
@@ -3218,7 +3224,7 @@ public class Launcher extends Activity
                                 longClickCellInfo.cellY));
                 if (!(itemUnderLongClick instanceof Folder || isAllAppsButton)) {
                     // User long pressed on an item
-                    // 长按ITEM 拖动.
+                    // 长按ITEM 拖动. 形成一个bitmap.
                     mWorkspace.startDrag(longClickCellInfo);
                 }
             }

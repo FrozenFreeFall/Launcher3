@@ -2242,7 +2242,7 @@ public class Workspace extends PagedView
         }
 
         mDragInfo = cellInfo;
-        child.setVisibility(INVISIBLE);
+        child.setVisibility(INVISIBLE); // 隐藏item.
         CellLayout layout = (CellLayout) child.getParent().getParent();
         layout.prepareChildForDrag(child);
 
